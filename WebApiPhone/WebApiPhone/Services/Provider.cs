@@ -9,8 +9,14 @@ namespace WebApiPhone.Services
 {
     public class Provider : IProvider
     {
-        private readonly Dictionary<int, Phone> _phones = new Dictionary<int, Phone>();
-        private int _id = 1;
+        private readonly Dictionary<int, Phone> _phones;
+        private int _id;
+
+        public Provider()
+        {
+            _phones = new Dictionary<int, Phone>();
+            _id = 1;
+        }
 
         public void Post(Phone phone)
         {
