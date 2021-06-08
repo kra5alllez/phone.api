@@ -9,32 +9,33 @@ namespace WebApiPhone.Services
 {
     public class Provider : IProvider
     {
-        private readonly List<Phone> _phones;
+        private readonly Dictionary<int, Phone> _phones = new Dictionary<int, Phone>();
+        private int _id = 1;
 
         public void Post(Phone phone)
         {
-            _phones.Add(phone);
+            var id = _id++;
+            _phones.Add(id, phone);
         }
 
-        public void Put(Phone phone)
+        public void Put(int id, Phone phone)
         {
-            var index = _phones.FindIndex(x => x.Id == phone.Id);
-            _phones[index] = phone;
+            _phones[id] = phone;
         }
 
         public void Delete(int id)
         {
-            _phones.RemoveAt(id);
+            _phones.Remove(id);
         }
 
-        public List<Phone> Get()
+        public Dictionary<int, Phone> Get()
         {
             return _phones;
         }
 
         public Phone Get(int id)
         {
-            var phone = _phones.FirstOrDefault(x => x.Id == id);
+            var phone = _phones[id];
             return phone;
         }
     }

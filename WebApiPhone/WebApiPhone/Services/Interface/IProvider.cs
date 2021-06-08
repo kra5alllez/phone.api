@@ -10,9 +10,10 @@ namespace WebApiPhone.Services.Interface
     {
         void Post(Phone phone);
 
-        void Put(Phone phone);
+        void Put(int id, Phone phone);
 
         void Delete(int id);
+        Dictionary<int, Phone> Get();
 
         Phone Get(int id);
     }
